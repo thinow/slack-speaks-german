@@ -1,10 +1,10 @@
-const WordOfTheDayGenerator = require('./WordOfTheDayGenerator')
+const SlackNotifier = require('./SlackNotifier')
 
-const RESPONSE_SUCCESS = {statusCode: 200, body: JSON.stringify('ok')};
+const RESPONSE_SUCCESS = {statusCode: 200, body: JSON.stringify('ok')}
 
-const generator = new WordOfTheDayGenerator()
+const slackNotifier = new SlackNotifier()
 
-exports.handlers = event => {
-    generator.generate(event)
+exports.handlers = async event => {
+    await slackNotifier.sendWordOfTheDay(event)
     return RESPONSE_SUCCESS
 }

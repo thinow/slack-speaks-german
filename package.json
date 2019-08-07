@@ -17,6 +17,10 @@
   },
   "homepage": "https://github.com/thinow/slack-speaks-german#readme",
   "devDependencies": {
-    "jest": "^24.8.0"
+    "jest": "^24.8.0",
+    "nock": "^10.0.6"
+  },
+  "dependencies": {
+    "superagent": "^5.1.0"
   }
 }
