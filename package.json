@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/thinow/slack-speaks-german/issues"
   },
-  "homepage": "https://github.com/thinow/slack-speaks-german#readme"
+  "homepage": "https://github.com/thinow/slack-speaks-german#readme",
+  "devDependencies": {
+    "jest": "^24.8.0"
+  }
 }
