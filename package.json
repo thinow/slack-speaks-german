@@ -1,0 +1,19 @@
+{
+  "name": "slack-speaks-german",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thinow/slack-speaks-german.git"
+  },
+  "author": "Thierry Nowak",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thinow/slack-speaks-german/issues"
+  },
+  "homepage": "https://github.com/thinow/slack-speaks-german#readme"
+}
