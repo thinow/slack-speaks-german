@@ -1,4 +1,4 @@
-const AppContext = require('./AppContext')
+const AppContext = require('./src/AppContext')
 
 const RESPONSE_SUCCESS = {statusCode: 200, body: JSON.stringify('ok')}
 

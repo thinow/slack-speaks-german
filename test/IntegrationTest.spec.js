@@ -1,6 +1,6 @@
 const nock = require('nock')
 const RequestBodyCaptor = require('./common/RequestBodyCaptor')
-const {handlers} = require('../src')
+const {handlers} = require('../index')
 
 describe('when triggering the handler', () => {
     it('should have sent a message to the webhook', async () => {
