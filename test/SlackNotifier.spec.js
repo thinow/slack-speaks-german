@@ -1,15 +1,13 @@
 const nock = require('nock')
 const SlackNotifier = require('../src/SlackNotifier')
 
-const notifier = new SlackNotifier()
+class MockedWordGenerator {
+    generate() {
+        return 'MOCKED-WORD'
+    }
+}
 
-describe('when the argument is undefined', () => {
-    it('should throw an error', () => {
-        expect(() => {
-            notifier.sendWordOfTheDay(undefined)
-        }).toThrow('the webhook is missing')
-    })
-})
+const notifier = new SlackNotifier(new MockedWordGenerator())
 
 describe('when the webhook is undefined', () => {
     it('should throw an error', () => {

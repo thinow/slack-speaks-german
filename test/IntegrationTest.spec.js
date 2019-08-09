@@ -17,7 +17,7 @@ describe('when triggering the handler', () => {
 
         // then
         expect(requestBodyCaptor.getValue()).toMatchObject({
-            text: 'Ein neues Wort'
+            text: expect.stringMatching(/Wort des Tages : .*$/)
         })
     })
 })

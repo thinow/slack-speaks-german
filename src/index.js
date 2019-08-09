@@ -1,10 +1,10 @@
-const SlackNotifier = require('./SlackNotifier')
+const AppContext = require('./AppContext')
 
 const RESPONSE_SUCCESS = {statusCode: 200, body: JSON.stringify('ok')}
 
-const slackNotifier = new SlackNotifier()
+AppContext.init()
 
-exports.handlers = async event => {
-    await slackNotifier.sendWordOfTheDay(event)
+exports.handlers = async (event = {}) => {
+    await AppContext.slackNotifier.sendWordOfTheDay(event)
     return RESPONSE_SUCCESS
 }
