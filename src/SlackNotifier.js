@@ -6,11 +6,11 @@ class SlackNotifier {
     }
 
     sendWordOfTheDay(opts) {
-        const word = this.wordGenerator.generate(opts)
-        return this.sendToSlack(word, opts)
+        const word = this.wordGenerator.generate()
+        return this.sendToSlack(opts.webhook, word)
     }
 
-    sendToSlack(word, {webhook}) {
+    sendToSlack(webhook, word) {
         if (!webhook) throw new Error('the webhook is missing')
 
         return request

@@ -1,12 +1,12 @@
-const words = require('all-the-german-words')
+const words = require('../resources/words')
 const WordGenerator = require('./WordGenerator')
 const SlackNotifier = require('./SlackNotifier')
 
 class AppContext {
-
-    static init() {
-        AppContext.wordGenerator = new WordGenerator(words)
-        AppContext.slackNotifier = new SlackNotifier(AppContext.wordGenerator)
+    constructor() {
+        this.words = words
+        this.wordGenerator = new WordGenerator(this.words)
+        this.slackNotifier = new SlackNotifier(this.wordGenerator)
     }
 }
 
