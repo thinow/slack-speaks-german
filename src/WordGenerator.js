@@ -9,7 +9,8 @@ class WordGenerator {
     }
 
     generate() {
-        return WordGenerator.pickRandomly(this.words)
+        const [article, german, english] = WordGenerator.pickRandomly(this.words)
+        return {article, german, english}
     }
 
     static pickRandomly(array) {

@@ -20,10 +20,10 @@ class SlackNotifier {
                 attachments: [
                     {
                         color: '#ff9900',
-                        title: word,
+                        title: `${word.article} ${word.german}`,
                         text: [
-                            `:de: Bedeutung : https://www.wortbedeutung.info/${encodeURIComponent(word)}`,
-                            `:gb: Übersetzung : https://www.wordreference.com/deen/${encodeURIComponent(word)}`
+                            `:de: Bedeutung : https://www.wortbedeutung.info/${encodeURIComponent(word.german)}`,
+                            `:gb: Übersetzung : https://www.wordreference.com/deen/${encodeURIComponent(word.german)}`
                         ].join('\n')
                     }
                 ]

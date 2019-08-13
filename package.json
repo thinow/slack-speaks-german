@@ -20,7 +20,6 @@
     "superagent": "^5.1.0"
   },
   "devDependencies": {
-    "all-the-german-words": "^1.1.0",
     "jest": "^24.8.0",
     "nock": "^10.0.6"
   }

@@ -3,7 +3,7 @@ const SlackNotifier = require('../src/SlackNotifier')
 
 class MockedWordGenerator {
     generate() {
-        return 'MOCKED-WORD'
+        return {word: 'MOCKED-WORD'}
     }
 }
 

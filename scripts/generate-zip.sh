@@ -5,16 +5,13 @@ npm test
 
 rm -rfv generated
 
-mkdir -p generated/package/resources
-
-# Generate the resources
-node ./scripts/prints-filtered-words.js > generated/package/resources/words.json
+mkdir -p generated/package
 
 # Remove the unnecessary dependencies
 npm prune --production
 
 # Copy the sources
-cp -R node_modules src index.js generated/package
+cp -R node_modules src resources index.js generated/package
 
 # Compress in a zip file
 pushd generated/package

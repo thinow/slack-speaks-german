@@ -17,12 +17,18 @@ describe('when trying to instantiate with empty words', () => {
 describe('when generating a word', () => {
     it('should pick a value from given words', () => {
         // given
-        const words = ['Wort']
+        const words = [
+            ['das', 'Wort', 'word']
+        ]
 
         // when
         const word = new WordGenerator(words).generate()
 
         // then
-        expect(word).toEqual('Wort')
+        expect(word).toEqual({
+            article: 'das',
+            german: 'Wort',
+            english: 'word'
+        })
     })
 })
