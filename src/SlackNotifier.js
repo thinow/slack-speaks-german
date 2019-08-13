@@ -15,7 +15,19 @@ class SlackNotifier {
 
         return request
             .post(webhook)
-            .send({text: `Wort des Tages : *${word}*`})
+            .send({
+                text: 'Guten Morgen! Lass uns ein neues Wort lernen...',
+                attachments: [
+                    {
+                        color: '#ff9900',
+                        title: word,
+                        text: [
+                            `:de: Bedeutung : https://www.wortbedeutung.info/${encodeURIComponent(word)}`,
+                            `:gb: Übersetzung : https://www.wordreference.com/deen/${encodeURIComponent(word)}`
+                        ].join('\n')
+                    }
+                ]
+            })
     }
 }
 

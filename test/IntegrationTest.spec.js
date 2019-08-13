@@ -17,7 +17,12 @@ describe('when triggering the handler', () => {
 
         // then
         expect(requestBodyCaptor.getValue()).toMatchObject({
-            text: expect.stringMatching(/Wort des Tages : .*$/)
+            text: expect.stringMatching(/Guten Morgen!.*$/),
+            attachments: [
+                expect.objectContaining({
+                    title: expect.any(String)
+                })
+            ]
         })
     })
 })
