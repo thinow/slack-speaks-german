@@ -1,0 +1,62 @@
+AWSTemplateFormatVersion: 2010-09-09
+
+Parameters:
+  S3BucketName:
+    Type: String
+    Description: S3 Bucket Name where the source code is stored
+  S3BucketKey:
+    Type: String
+    Description: S3 Bucket Key of the Zip File containing the source code
+  LambdaFunctionName:
+    Type: String
+    Default: 'SlackSpeaksGerman'
+    Description: Name of the Lambda Function
+
+Resources:
+
+  # TODO CloudWatch Events
+
+  LambdaFunction:
+    Type: "AWS::Lambda::Function"
+    Properties:
+      FunctionName: !Ref LambdaFunctionName
+      Handler: "index.handlers"
+      Role: !GetAtt Role.Arn
+      Code:
+        S3Bucket: !Ref S3BucketName
+        S3Key: !Ref S3BucketKey
+      Runtime: "nodejs10.x"
+      Timeout: 5
+
+  Role:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      Description: Role assumed by the Lambda Function
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      ManagedPolicyArns:
+        - !Ref ManagedPolicy
+
+  ManagedPolicy:
+    Type: 'AWS::IAM::ManagedPolicy'
+    Properties:
+      Description: Allows the Lambda Function to generate Logs
+      PolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+            Action: 'logs:CreateLogGroup'
+            Resource: !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:*'
+          - Effect: Allow
+            Action:
+              - 'logs:CreateLogStream'
+              - 'logs:PutLogEvents'
+            Resource:
+              - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${LambdaFunctionName}:*'
