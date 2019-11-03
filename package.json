@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "build": "./scripts/generate-zip.sh"
+    "test": "jest"
   },
   "repository": {
     "type": "git",

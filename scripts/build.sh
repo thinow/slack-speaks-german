@@ -1,8 +1,5 @@
 #!/usr/bin/env bash -ex
 
-npm install
-npm test
-
 rm -rfv generated
 
 mkdir -p generated/package
