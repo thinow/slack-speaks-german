@@ -12,7 +12,9 @@ cp -R node_modules src resources index.js generated/package
 
 # Compress in a zip file
 pushd generated/package
-    zip -r ../package.zip ./node_modules src/* resources/* index.js
+    TIMESTAMP=$(date +"%s")
+    OUTPUT_FILE_NAME="package.${TIMESTAMP}.zip"
+    zip -r "../${OUTPUT_FILE_NAME}" ./node_modules src/* resources/* index.js
 popd
 
 # Reinstall the dependencies
