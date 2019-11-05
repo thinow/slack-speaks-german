@@ -23,4 +23,6 @@ aws cloudformation deploy \
     --parameter-overrides \
         S3BucketName=${BUCKET_NAME} \
         S3BucketKey=${BUCKET_KEY}/${PACKAGE_FILENAME} \
+        TagTeam=${TAG_TEAM:-undefined} \
+        TagSystemID=${TAG_SYSTEM_ID:-undefined} \
     --capabilities CAPABILITY_IAM

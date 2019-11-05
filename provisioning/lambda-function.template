@@ -11,10 +11,14 @@ Parameters:
     Type: String
     Default: 'SlackSpeaksGerman'
     Description: Name of the Lambda Function
+  TagTeam:
+    Type: String
+    Description: Name of the team owning the Lambda Function (optional)
+  TagSystemID:
+    Type: String
+    Description: Name of the system related to the Lambda Function (optional)
 
 Resources:
-
-  # TODO CloudWatch Events
 
   LambdaFunction:
     Type: "AWS::Lambda::Function"
@@ -27,6 +31,11 @@ Resources:
         S3Key: !Ref S3BucketKey
       Runtime: "nodejs10.x"
       Timeout: 5
+      Tags:
+        - Key: "Team"
+          Value: !Ref TagTeam
+        - Key: "SystemID"
+          Value: !Ref TagSystemID
 
   Role:
     Type: 'AWS::IAM::Role'
@@ -43,6 +52,11 @@ Resources:
               - 'sts:AssumeRole'
       ManagedPolicyArns:
         - !Ref ManagedPolicy
+      Tags:
+        - Key: "Team"
+          Value: !Ref TagTeam
+        - Key: "SystemID"
+          Value: !Ref TagSystemID
 
   ManagedPolicy:
     Type: 'AWS::IAM::ManagedPolicy'
