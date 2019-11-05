@@ -11,6 +11,15 @@ Parameters:
     Type: String
     Default: 'SlackSpeaksGerman'
     Description: Name of the Lambda Function
+  ScheduleState:
+    Type: String
+    AllowedValues:
+      - DISABLED
+      - ENABLED
+    Description: Is the Lambda Function disabled or enabled ?
+  ScheduleExpression:
+    Type: String
+    Description: Defines when is invoked the Lambda Function. e.g. cron(0 7 ? * MON-FRI *)
   TagTeam:
     Type: String
     Description: Name of the team owning the Lambda Function (optional)
@@ -74,3 +83,24 @@ Resources:
               - 'logs:PutLogEvents'
             Resource:
               - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${LambdaFunctionName}:*'
+
+  ScheduledRule:
+    Type: AWS::Events::Rule
+    Properties:
+      State: !Ref ScheduleState
+      ScheduleExpression: !Ref ScheduleExpression
+      Description: Regularly invoke the Lambda Function
+      Targets:
+        -
+          Id: !Ref LambdaFunctionName
+          Arn: !GetAtt LambdaFunction.Arn
+
+  # TODO add content to the event
+
+  PermissionForEventsToInvokeLambda:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Principal: "events.amazonaws.com"
+      SourceArn: !GetAtt ScheduledRule.Arn
+      Action: "lambda:InvokeFunction"
+      FunctionName: !Ref LambdaFunction

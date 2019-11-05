@@ -21,8 +21,10 @@ aws cloudformation deploy \
     --stack-name "slack-speaks-german" \
     --template-file "${BASE_FOLDER}/../provisioning/lambda-function.template" \
     --parameter-overrides \
-        S3BucketName=${BUCKET_NAME} \
-        S3BucketKey=${BUCKET_KEY}/${PACKAGE_FILENAME} \
-        TagTeam=${TAG_TEAM:-undefined} \
-        TagSystemID=${TAG_SYSTEM_ID:-undefined} \
+        S3BucketName="${BUCKET_NAME}" \
+        S3BucketKey="${BUCKET_KEY}/${PACKAGE_FILENAME}" \
+        ScheduleState="${SCHEDULE_STATE:-DISABLED}" \
+        ScheduleExpression="${SCHEDULE_EXPRESSION:-cron(0 7 ? * MON-FRI *)}" \
+        TagTeam="${TAG_TEAM:-undefined}" \
+        TagSystemID="${TAG_SYSTEM_ID:-undefined}" \
     --capabilities CAPABILITY_IAM
