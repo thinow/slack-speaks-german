@@ -6,6 +6,7 @@ BASE_FOLDER=$(dirname "$0")
 [[ -z "${AWS_DEFAULT_REGION}" ]] && echo "Error: Missing the environment variable AWS_DEFAULT_REGION" && exit 1
 [[ -z "${BUCKET_NAME}" ]] && echo "Error: Missing the environment variable BUCKET_NAME" && exit 1
 [[ -z "${BUCKET_KEY}" ]] && echo "Error: Missing the environment variable BUCKET_KEY" && exit 1
+[[ -z "${WEBHOOK}" ]] && echo "Error: Missing the environment variable WEBHOOK" && exit 1
 
 # Search the source code
 PACKAGE_PATH=$(find "${BASE_FOLDER}/../generated" -name *.zip)
@@ -23,6 +24,7 @@ aws cloudformation deploy \
     --parameter-overrides \
         S3BucketName="${BUCKET_NAME}" \
         S3BucketKey="${BUCKET_KEY}/${PACKAGE_FILENAME}" \
+        WebHook="${WEBHOOK}" \
         ScheduleState="${SCHEDULE_STATE:-DISABLED}" \
         ScheduleExpression="${SCHEDULE_EXPRESSION:-cron(0 7 ? * MON-FRI *)}" \
         TagTeam="${TAG_TEAM:-undefined}" \

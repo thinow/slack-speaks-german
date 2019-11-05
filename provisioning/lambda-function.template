@@ -11,6 +11,9 @@ Parameters:
     Type: String
     Default: 'SlackSpeaksGerman'
     Description: Name of the Lambda Function
+  WebHook:
+    Type: String
+    Description: URL of the Slack WebHook
   ScheduleState:
     Type: String
     AllowedValues:
@@ -94,8 +97,7 @@ Resources:
         -
           Id: !Ref LambdaFunctionName
           Arn: !GetAtt LambdaFunction.Arn
-
-  # TODO add content to the event
+          Input: !Sub '{ "webhook" : "${WebHook}" }'
 
   PermissionForEventsToInvokeLambda:
     Type: AWS::Lambda::Permission
