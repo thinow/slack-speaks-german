@@ -19,7 +19,7 @@ aws s3 cp "${PACKAGE_PATH}" "s3://${BUCKET_NAME}/${BUCKET_KEY}/${PACKAGE_FILENAM
 
 # Runs the provisioning
 aws cloudformation deploy \
-    --stack-name "slack-speaks-german" \
+    --stack-name "${STACK_NAME:-slack-speaks-german}" \
     --template-file "${BASE_FOLDER}/../provisioning/lambda-function.template" \
     --parameter-overrides \
         S3BucketName="${BUCKET_NAME}" \
