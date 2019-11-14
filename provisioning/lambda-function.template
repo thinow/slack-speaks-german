@@ -23,6 +23,9 @@ Parameters:
   ScheduleExpression:
     Type: String
     Description: Defines when is invoked the Lambda Function. e.g. cron(0 7 ? * MON-FRI *)
+  ResourcesPath:
+    Type: String
+    Description: Path applied to resource such as the managed policy, the role, and so on
   TagTeam:
     Type: String
     Description: Name of the team owning the Lambda Function (optional)
@@ -64,6 +67,7 @@ Resources:
               - 'sts:AssumeRole'
       ManagedPolicyArns:
         - !Ref ManagedPolicy
+      Path: !Ref ResourcesPath
       Tags:
         - Key: "Team"
           Value: !Ref TagTeam
@@ -74,6 +78,7 @@ Resources:
     Type: 'AWS::IAM::ManagedPolicy'
     Properties:
       Description: Allows the Lambda Function to generate Logs
+      Path: !Ref ResourcesPath
       PolicyDocument:
         Version: 2012-10-17
         Statement:

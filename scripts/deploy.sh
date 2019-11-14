@@ -27,6 +27,7 @@ aws cloudformation deploy \
         WebHook="${WEBHOOK}" \
         ScheduleState="${SCHEDULE_STATE:-DISABLED}" \
         ScheduleExpression="${SCHEDULE_EXPRESSION:-cron(0 7 ? * MON-FRI *)}" \
+        ResourcesPath="${RESOURCES_PATH:-/}" \
         TagTeam="${TAG_TEAM:-undefined}" \
         TagSystemID="${TAG_SYSTEM_ID:-undefined}" \
     --capabilities CAPABILITY_IAM
