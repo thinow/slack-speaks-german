@@ -20,13 +20,14 @@ aws s3 cp "${PACKAGE_PATH}" "s3://${BUCKET_NAME}/${BUCKET_KEY}/${PACKAGE_FILENAM
 # Runs the provisioning
 aws cloudformation deploy \
     --stack-name "${STACK_NAME:-slack-speaks-german}" \
-    --template-file "${BASE_FOLDER}/../provisioning/lambda-function.template" \
+    --template-file "${BASE_FOLDER}/../provisioning/lambda-function.yaml" \
     --parameter-overrides \
         S3BucketName="${BUCKET_NAME}" \
         S3BucketKey="${BUCKET_KEY}/${PACKAGE_FILENAME}" \
         WebHook="${WEBHOOK}" \
         ScheduleState="${SCHEDULE_STATE:-DISABLED}" \
         ScheduleExpression="${SCHEDULE_EXPRESSION:-cron(0 7 ? * MON-FRI *)}" \
+        RolePermissionsBoundary="${ROLE_PERMISSIONS_BOUNDARY:-}" \
         ResourcesPath="${RESOURCES_PATH:-/}" \
         TagTeam="${TAG_TEAM:-undefined}" \
         TagSystemID="${TAG_SYSTEM_ID:-undefined}" \

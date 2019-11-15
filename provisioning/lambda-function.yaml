@@ -9,7 +9,7 @@ Parameters:
     Description: S3 Bucket Key of the Zip File containing the source code
   LambdaFunctionName:
     Type: String
-    Default: 'SlackSpeaksGerman'
+    Default: SlackSpeaksGerman
     Description: Name of the Lambda Function
   WebHook:
     Type: String
@@ -23,6 +23,9 @@ Parameters:
   ScheduleExpression:
     Type: String
     Description: Defines when is invoked the Lambda Function. e.g. cron(0 7 ? * MON-FRI *)
+  RolePermissionsBoundary:
+    Type: String
+    Description: Defines the permissions boundary of the role
   ResourcesPath:
     Type: String
     Description: Path applied to resource such as the managed policy, the role, and so on
@@ -36,24 +39,24 @@ Parameters:
 Resources:
 
   LambdaFunction:
-    Type: "AWS::Lambda::Function"
+    Type: AWS::Lambda::Function
     Properties:
       FunctionName: !Ref LambdaFunctionName
-      Handler: "index.handlers"
+      Handler: index.handlers
       Role: !GetAtt Role.Arn
       Code:
         S3Bucket: !Ref S3BucketName
         S3Key: !Ref S3BucketKey
-      Runtime: "nodejs10.x"
+      Runtime: nodejs10.x
       Timeout: 5
       Tags:
-        - Key: "Team"
+        - Key: Team
           Value: !Ref TagTeam
-        - Key: "SystemID"
+        - Key: SystemID
           Value: !Ref TagSystemID
 
   Role:
-    Type: 'AWS::IAM::Role'
+    Type: AWS::IAM::Role
     Properties:
       Description: Role assumed by the Lambda Function
       AssumeRolePolicyDocument:
@@ -64,18 +67,19 @@ Resources:
               Service:
                 - lambda.amazonaws.com
             Action:
-              - 'sts:AssumeRole'
+              - sts:AssumeRole
       ManagedPolicyArns:
         - !Ref ManagedPolicy
+      PermissionsBoundary: !Ref RolePermissionsBoundary
       Path: !Ref ResourcesPath
       Tags:
-        - Key: "Team"
+        - Key: Team
           Value: !Ref TagTeam
-        - Key: "SystemID"
+        - Key: SystemID
           Value: !Ref TagSystemID
 
   ManagedPolicy:
-    Type: 'AWS::IAM::ManagedPolicy'
+    Type: AWS::IAM::ManagedPolicy
     Properties:
       Description: Allows the Lambda Function to generate Logs
       Path: !Ref ResourcesPath
@@ -83,12 +87,12 @@ Resources:
         Version: 2012-10-17
         Statement:
           - Effect: Allow
-            Action: 'logs:CreateLogGroup'
+            Action: logs:CreateLogGroup
             Resource: !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:*'
           - Effect: Allow
             Action:
-              - 'logs:CreateLogStream'
-              - 'logs:PutLogEvents'
+              - logs:CreateLogStream
+              - logs:PutLogEvents
             Resource:
               - !Sub 'arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${LambdaFunctionName}:*'
 
@@ -107,7 +111,7 @@ Resources:
   PermissionForEventsToInvokeLambda:
     Type: AWS::Lambda::Permission
     Properties:
-      Principal: "events.amazonaws.com"
+      Principal: events.amazonaws.com
       SourceArn: !GetAtt ScheduledRule.Arn
-      Action: "lambda:InvokeFunction"
+      Action: lambda:InvokeFunction
       FunctionName: !Ref LambdaFunction
