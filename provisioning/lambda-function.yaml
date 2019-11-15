@@ -36,6 +36,9 @@ Parameters:
     Type: String
     Description: Name of the system related to the Lambda Function (optional)
 
+Conditions:
+  RolePermissionsBoundaryExists: !Not [ !Equals [ "", !Ref RolePermissionsBoundary ] ]
+
 Resources:
 
   LambdaFunction:
@@ -70,7 +73,7 @@ Resources:
               - sts:AssumeRole
       ManagedPolicyArns:
         - !Ref ManagedPolicy
-      PermissionsBoundary: !Ref RolePermissionsBoundary
+      PermissionsBoundary: !If [ RolePermissionsBoundaryExists, !Ref RolePermissionsBoundary, !Ref "AWS::NoValue" ]
       Path: !Ref ResourcesPath
       Tags:
         - Key: Team
