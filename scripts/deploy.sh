@@ -3,7 +3,6 @@
 BASE_FOLDER=$(dirname "$0")
 
 # check environment variables
-[[ -z "${AWS_DEFAULT_REGION}" ]] && echo "Error: Missing the environment variable AWS_DEFAULT_REGION" && exit 1
 [[ -z "${BUCKET_NAME}" ]] && echo "Error: Missing the environment variable BUCKET_NAME" && exit 1
 [[ -z "${BUCKET_KEY}" ]] && echo "Error: Missing the environment variable BUCKET_KEY" && exit 1
 [[ -z "${WEBHOOK}" ]] && echo "Error: Missing the environment variable WEBHOOK" && exit 1
