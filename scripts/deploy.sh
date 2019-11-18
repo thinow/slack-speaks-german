@@ -26,6 +26,7 @@ aws cloudformation deploy \
         WebHook="${WEBHOOK}" \
         ScheduleState="${SCHEDULE_STATE:-DISABLED}" \
         ScheduleExpression="${SCHEDULE_EXPRESSION:-cron(0 7 ? * MON-FRI *)}" \
+        LambdaFunctionName="${LAMBDA_FUNCTION_NAME:-SlackSpeaksGerman}" \
         RolePermissionsBoundary="${ROLE_PERMISSIONS_BOUNDARY:-}" \
         ResourcesPath="${RESOURCES_PATH:-/}" \
         TagTeam="${TAG_TEAM:-undefined}" \

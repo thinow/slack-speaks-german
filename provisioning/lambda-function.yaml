@@ -9,7 +9,6 @@ Parameters:
     Description: S3 Bucket Key of the Zip File containing the source code
   LambdaFunctionName:
     Type: String
-    Default: SlackSpeaksGerman
     Description: Name of the Lambda Function
   WebHook:
     Type: String
