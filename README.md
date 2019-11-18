@@ -2,6 +2,8 @@
 
 AWS Lambda which notifies Slack with a German word, its article, its English translation, and some links to know more about it.
 
+![Image](./assets/example-slack-message.png)
+
 ## Prerequesites
 
 1. node
