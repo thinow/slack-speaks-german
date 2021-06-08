@@ -49,7 +49,7 @@ Resources:
       Code:
         S3Bucket: !Ref S3BucketName
         S3Key: !Ref S3BucketKey
-      Runtime: nodejs10.x
+      Runtime: nodejs14.x
       Timeout: 5
       Tags:
         - Key: Team
