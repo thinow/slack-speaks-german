@@ -39,5 +39,5 @@ Other parameters are available :
 * `SCHEDULE_EXPRESSION` (default = `cron(0 7 ? * MON-FRI *)`) : expression of the schedule
 * `ROLE_PERMISSIONS_BOUNDARY` (default = none) : if needed, specifies a permissions boundary to the role
 * `RESOURCES_PATH` (default = `/`) : defines a path to the role and the policy
-* `TAG_TEAM` (default = `undefined`) : value of the tag `SystemID` applied to the resources
+* `TAG_TEAM` (default = `undefined`) : value of the tag `Team` applied to the resources
 * `TAG_SYSTEM_ID` (default = `undefined`) : value of the tag `SystemID` applied to the resources
