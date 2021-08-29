@@ -1,20 +1,22 @@
 class WordGenerator {
 
-    constructor(words) {
-        if (!words || !words.length) {
-            throw new Error('the argument `words` is missing or empty')
-        }
-
-        this.words = words
+    constructor(datasource) {
+        this.datasource = datasource
     }
 
     generate() {
-        const [article, german, english] = WordGenerator.pickRandomly(this.words)
-        return {article, german, english}
+        const wordIndex = this.generateWordIndex()
+        const word = this.datasource.getWord(wordIndex)
+        return {
+            article: '', // TODO return word class object
+            german: word.german,
+            english: word.english,
+        }
     }
 
-    static pickRandomly(array) {
-        return array[Math.floor(Math.random() * array.length)]
+    generateWordIndex() {
+        const numberOfWords = this.datasource.getNumberOfWords()
+        return Math.floor(Math.random() * numberOfWords)
     }
 }
 
