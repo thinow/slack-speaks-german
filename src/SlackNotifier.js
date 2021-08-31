@@ -26,8 +26,8 @@ class SlackNotifier {
                     {
                         color: '#ff9900',
                         text: [
-                            `:de: Bedeutung : https://www.wortbedeutung.info/${encodeURIComponent(word.german)}`,
-                            `:gb: Übersetzung : https://www.wordreference.com/deen/${encodeURIComponent(word.german)}`
+                            `:de: Bedeutung : https://www.wortbedeutung.info/${encodeURIComponent(word.germanWordOnly)}`,
+                            `:gb: Übersetzung : https://www.wordreference.com/deen/${encodeURIComponent(word.germanWordOnly)}`
                         ].join('\n')
                     }
                 ]

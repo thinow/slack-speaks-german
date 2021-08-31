@@ -72,8 +72,8 @@ class WordRepository {
     }
 
     transformLineToWord(line) {
-        const [german, , english] = line.split('|');
-        return new Word(german, english)
+        const [germanWordOnly, german, english] = line.split('|');
+        return new Word(german, english, germanWordOnly)
     }
 }
 

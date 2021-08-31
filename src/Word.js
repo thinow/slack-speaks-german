@@ -1,7 +1,8 @@
 class Word {
-    constructor(german, english) {
+    constructor(german, english, germanWordOnly) {
         this.german = german
         this.english = english
+        this.germanWordOnly = germanWordOnly
     }
 }
 

@@ -1,3 +1,3 @@
-der Ersatz|no plural forms|replacement|Sie bekommen von unserer Firma einen Ersatz für das kaputte Gerät.|You get from our company a replacement for the broken device.
-erzählen|erzählt, erzählte, hat erzählt|to tell|Mein Mann hat mir schon viel von Ihnen erzählt.|My husband has already told me a lot about you.|Ich muss meinen Kindern abends immer eine Geschichte erzählen.|I always have to tell my children a story in the evening.
-fällig||due|Die Rechnung ist Ende des Monats fällig.|The bill is due at the end of the month.
+Ersatz|der Ersatz|replacement|no plural forms|Sie bekommen von unserer Firma einen Ersatz für das kaputte Gerät.|You get from our company a replacement for the broken device.
+erzählen|erzählen|to tell|erzählt, erzählte, hat erzählt|Mein Mann hat mir schon viel von Ihnen erzählt.|My husband has already told me a lot about you.|Ich muss meinen Kindern abends immer eine Geschichte erzählen.|I always have to tell my children a story in the evening.
+fällig|fällig|due||Die Rechnung ist Ende des Monats fällig.|The bill is due at the end of the month.
