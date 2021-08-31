@@ -13,7 +13,7 @@ class SlackNotifier {
     sendToSlack(webhook, word) {
         if (!webhook) throw new Error('the webhook is missing')
 
-        const color = '#0073ff'
+        const color = '#3583f3'
         return request
             .post(webhook)
             .send({
@@ -23,10 +23,10 @@ class SlackNotifier {
                         color,
                         mrkdwn_in: ['pretext', 'text', 'fields'],
                         pretext: `*Wort des Tages*`,
-                        title: `:de: ${word.german}`,
+                        title: `${word.german}`,
                         // TODO replace characters in word.germanWordOnly, e.g. ä to ae
                         title_link: `https://www.duden.de/rechtschreibung/${encodeURIComponent(word.germanWordOnly)}`,
-                        text: word.details ? [`_${word.details}_`, `:gb: ${word.english}`].join('\n') : `:gb: ${word.english}`,
+                        text: word.details ? [`_${word.english}_`, `_${word.details}_`].join('\n') : `_${word.english}_`,
                         fields: [
                             {}, // enforce line in-between
                             ...word.examples.map(example => ({
