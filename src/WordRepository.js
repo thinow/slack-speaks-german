@@ -60,14 +60,13 @@ class WordRepository {
                 if (lineNumber === index) {
                     readerCallback(false) // stop reading
                     resolve(line)
+                } else if (last) {
+                    throw Error(`End of the file has been reached. Index was not met : ${index}`)
                 } else {
                     readerCallback() // continue reading
                 }
 
                 lineNumber++
-
-                // TODO handle error when last has been reached
-
             }, reject)
         })
     }

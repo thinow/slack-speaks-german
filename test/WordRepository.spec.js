@@ -54,7 +54,7 @@ describe('with a single word', () => {
 })
 
 describe('with multiple words', () => {
-    it('should the word based on the index', async () => {
+    it('should return the word based on the index', async () => {
         // when
         const repository = WordRepository.loadFromFolder('./test/resources/folder-multiple-words');
 
