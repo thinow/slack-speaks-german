@@ -1,34 +1,23 @@
 const WordSelector = require('../src/WordSelector')
+const WordRepository = require('../src/WordRepository')
+const Word = require('../src/Word')
 
-describe('when trying to instantiate with undefined words', () => {
-    it('should raise an error', () => {
-        expect(() => new WordSelector(undefined))
-            .toThrow('the argument `words` is missing or empty')
-    })
-})
+const SINGLE_TEST_WORD = new Word('german', 'english');
 
-describe('when trying to instantiate with empty words', () => {
-    it('should raise an error', () => {
-        expect(() => new WordSelector([]))
-            .toThrow('the argument `words` is missing or empty')
-    })
-})
+const mockedWordRepository = {
+    getNumberOfWords: jest.fn(() => 1),
+    getWord: jest.fn(() => SINGLE_TEST_WORD),
+}
 
 describe('when selecting a word', () => {
     it('should pick a value from given words', () => {
-        // given
-        const words = [
-            ['das', 'Wort', 'word']
-        ]
-
         // when
-        const word = new WordSelector(words).select()
+        const word = new WordSelector(mockedWordRepository).select()
 
         // then
-        expect(word).toEqual({
-            article: 'das',
-            german: 'Wort',
-            english: 'word'
-        })
+        expect(word).toEqual(SINGLE_TEST_WORD)
+
+        const onlyAvailableIndex = 0;
+        expect(mockedWordRepository.getWord).toHaveBeenCalledWith(onlyAvailableIndex)
     })
 })
