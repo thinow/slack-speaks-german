@@ -20,7 +20,7 @@ class SlackNotifier {
                 attachments: [
                     {
                         color: '#ff9900',
-                        title: `${word.article} ${word.german}`,
+                        title: `${word.german}`,
                         footer: `${word.english}`
                     },
                     {

@@ -1,9 +1,10 @@
 const nock = require('nock')
 const SlackNotifier = require('../src/SlackNotifier')
+const Word = require('../src/Word')
 
 class MockedWordSelector {
     select() {
-        return {word: 'MOCKED-WORD'}
+        return new Word('german', 'english')
     }
 }
 
