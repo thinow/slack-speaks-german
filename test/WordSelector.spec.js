@@ -1,20 +1,20 @@
-const WordGenerator = require('../src/WordGenerator')
+const WordSelector = require('../src/WordSelector')
 
 describe('when trying to instantiate with undefined words', () => {
     it('should raise an error', () => {
-        expect(() => new WordGenerator(undefined))
+        expect(() => new WordSelector(undefined))
             .toThrow('the argument `words` is missing or empty')
     })
 })
 
 describe('when trying to instantiate with empty words', () => {
     it('should raise an error', () => {
-        expect(() => new WordGenerator([]))
+        expect(() => new WordSelector([]))
             .toThrow('the argument `words` is missing or empty')
     })
 })
 
-describe('when generating a word', () => {
+describe('when selecting a word', () => {
     it('should pick a value from given words', () => {
         // given
         const words = [
@@ -22,7 +22,7 @@ describe('when generating a word', () => {
         ]
 
         // when
-        const word = new WordGenerator(words).generate()
+        const word = new WordSelector(words).select()
 
         // then
         expect(word).toEqual({

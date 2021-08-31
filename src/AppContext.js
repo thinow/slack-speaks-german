@@ -1,12 +1,12 @@
 const Datasource = require('./Datasource')
-const WordGenerator = require('./WordGenerator')
+const WordSelector = require('./WordSelector')
 const SlackNotifier = require('./SlackNotifier')
 
 class AppContext {
     constructor() {
         this.datasource = Datasource.loadFromFolder('./resources/words')
-        this.wordGenerator = new WordGenerator(this.datasource)
-        this.slackNotifier = new SlackNotifier(this.wordGenerator)
+        this.wordSelector = new WordSelector(this.datasource)
+        this.slackNotifier = new SlackNotifier(this.wordSelector)
     }
 }
 

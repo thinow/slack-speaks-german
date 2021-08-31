@@ -1,12 +1,12 @@
 const request = require('superagent');
 
 class SlackNotifier {
-    constructor(wordGenerator) {
-        this.wordGenerator = wordGenerator;
+    constructor(wordSelector) {
+        this.wordSelector = wordSelector;
     }
 
     sendWordOfTheDay(opts) {
-        const word = this.wordGenerator.generate()
+        const word = this.wordSelector.select()
         return this.sendToSlack(opts.webhook, word)
     }
 

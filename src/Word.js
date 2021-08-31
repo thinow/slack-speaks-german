@@ -5,4 +5,4 @@ class Word {
     }
 }
 
-modules.exports = Word
+module.exports = Word
