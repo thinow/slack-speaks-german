@@ -54,13 +54,12 @@ class WordRepository {
 
     async readLine(index) {
         const options = {encoding: this.metadata.encoding}
-        return await new Promise(resolve => {
-            // TODO figure out how errors are raised (should it be wrapped with a try/catch?)
+        return await new Promise((resolve, reject) => {
             lineReader.eachLine(this.dataFile, options, function (line, last, readerCallback) {
                 readerCallback(false)
                 // TODO resolve when index has been reached
                 resolve(line)
-            })
+            }, reject)
         })
     }
 
