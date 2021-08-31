@@ -72,8 +72,14 @@ class WordRepository {
     }
 
     transformLineToWord(line) {
-        const [germanWordOnly, german, english] = line.split('|');
-        return new Word(german, english, germanWordOnly)
+        const [germanWordOnly, german, english, details, ...examplesParts] = line.split('|');
+        const [germanExample1, englishExample1, germanExample2, englishExample2] = examplesParts
+
+        const examples = []
+        if (germanExample1 && englishExample1) examples.push({german: germanExample1, english: englishExample1})
+        if (germanExample2 && englishExample2) examples.push({german: germanExample2, english: englishExample2})
+
+        return new Word(germanWordOnly, german, english, details, examples)
     }
 }
 

@@ -9,7 +9,7 @@ class MockedWordSelector extends WordSelector {
     }
 
     async select() {
-        return new Word('german', 'english')
+        return new Word('germanWordOnly', 'german', 'english', 'details', [])
     }
 }
 

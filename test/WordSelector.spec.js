@@ -1,8 +1,7 @@
 const WordSelector = require('../src/WordSelector')
-const WordRepository = require('../src/WordRepository')
 const Word = require('../src/Word')
 
-const SINGLE_TEST_WORD = new Word('german', 'english');
+const SINGLE_TEST_WORD = new Word()
 
 const mockedWordRepository = {
     getNumberOfWords: jest.fn(() => 1),
