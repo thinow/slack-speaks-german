@@ -55,10 +55,19 @@ class WordRepository {
     async readLine(index) {
         const options = {encoding: this.metadata.encoding}
         return await new Promise((resolve, reject) => {
+            let lineNumber = 0
             lineReader.eachLine(this.dataFile, options, function (line, last, readerCallback) {
-                readerCallback(false)
-                // TODO resolve when index has been reached
-                resolve(line)
+                if (lineNumber === index) {
+                    readerCallback(false) // stop reading
+                    resolve(line)
+                } else {
+                    readerCallback() // continue reading
+                }
+
+                lineNumber++
+
+                // TODO handle error when last has been reached
+
             }, reject)
         })
     }

@@ -52,3 +52,16 @@ describe('with a single word', () => {
         })))
     })
 })
+
+describe('with multiple words', () => {
+    it('should the word based on the index', async () => {
+        // when
+        const repository = WordRepository.loadFromFolder('./test/resources/folder-multiple-words');
+
+        // then
+        expect(await repository.getWord(1)).toEqual(expect.objectContaining(({
+            german: 'erzählen',
+            english: 'to tell',
+        })))
+    })
+})
