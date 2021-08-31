@@ -4,14 +4,14 @@ function generateRandomIntegerLessThan(excludedMaxValue) {
 
 class WordSelector {
 
-    constructor(datasource) {
-        this.datasource = datasource
+    constructor(WordRepository) {
+        this.wordRepository = WordRepository
     }
 
     select() {
-        const numberOfWords = this.datasource.getNumberOfWords();
+        const numberOfWords = this.wordRepository.getNumberOfWords();
         const wordIndex = generateRandomIntegerLessThan(numberOfWords)
-        const word = this.datasource.getWord(wordIndex)
+        const word = this.wordRepository.getWord(wordIndex)
         return {
             article: '', // TODO return word class object
             german: word.german,

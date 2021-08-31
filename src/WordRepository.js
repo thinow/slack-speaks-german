@@ -1,8 +1,8 @@
 const Word = require('./Word')
 
-class Datasource {
+class WordRepository {
     static loadFromFolder(folder) {
-        return new Datasource()
+        return new WordRepository()
     }
 
     getNumberOfWords() {
@@ -14,4 +14,4 @@ class Datasource {
     }
 }
 
-module.exports = Datasource
+module.exports = WordRepository
