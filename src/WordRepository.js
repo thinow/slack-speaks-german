@@ -1,29 +1,41 @@
 const fs = require('fs')
 const lineReader = require('line-reader')
 const Word = require('./Word')
+const WordRepositoryFolderError = require('./errors/WordRepositoryFolderError')
 
 function assertFileExists(file) {
     if (!fs.existsSync(file) || !fs.lstatSync(file).isFile()) {
-        throw new Error(`Does not exist or is not a file : ${file}`)
+        throw new WordRepositoryFolderError(`File does not exist or is not a file : ${file}`)
+    }
+
+    return file
+}
+
+function assertPropertyExists(metadata, property) {
+    if (!metadata.hasOwnProperty(property)) {
+        throw new WordRepositoryFolderError(`Metadata file should contain property : ${property}`)
     }
 }
 
 function readJsonFile(file) {
-    return JSON.parse(fs.readFileSync(file));
+    try {
+        return JSON.parse(fs.readFileSync(file));
+    } catch (cause) {
+        throw new WordRepositoryFolderError(`Error when parsing file (expected to be a json file) : ${file}`)
+    }
 }
 
 class WordRepository {
 
     static loadFromFolder(folder) {
-        const dataFile = `${folder}/data.txt`;
-        const metadataFile = `${folder}/metadata.json`;
+        const dataFile = assertFileExists(`${folder}/data.txt`)
+        const metadataFile = assertFileExists(`${folder}/metadata.json`)
 
-        try {
-            assertFileExists(dataFile);
-            return new WordRepository(dataFile, readJsonFile(metadataFile))
-        } catch (cause) {
-            throw new Error('folder should be a directory containing the two following files : data.txt, metadata.json')
-        }
+        const metadata = readJsonFile(metadataFile);
+        assertPropertyExists(metadata, 'numberOfLines')
+        assertPropertyExists(metadata, 'encoding')
+
+        return new WordRepository(dataFile, metadata)
     }
 
     constructor(dataFile, metadata) {

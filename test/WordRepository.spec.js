@@ -1,7 +1,5 @@
 const WordRepository = require('../src/WordRepository')
-const Word = require('../src/Word')
-
-const WRONG_FOLDER_ERROR = 'folder should be a directory containing the two following files : data.txt, metadata.json'
+const WordRepositoryFolderError = require('../src/errors/WordRepositoryFolderError')
 
 describe('when loading folder', () => {
 
@@ -19,7 +17,7 @@ describe('when loading folder', () => {
         it('should throw an error', () => {
             expect(() => {
                 WordRepository.loadFromFolder('Not a folder')
-            }).toThrow(WRONG_FOLDER_ERROR)
+            }).toThrow(WordRepositoryFolderError)
         })
     })
 
@@ -27,7 +25,7 @@ describe('when loading folder', () => {
         it('should throw an error', () => {
             expect(() => {
                 WordRepository.loadFromFolder('./test/resources/folder-without-data')
-            }).toThrow(WRONG_FOLDER_ERROR)
+            }).toThrow(WordRepositoryFolderError)
         })
     })
 
@@ -35,7 +33,7 @@ describe('when loading folder', () => {
         it('should throw an error', () => {
             expect(() => {
                 WordRepository.loadFromFolder('./test/resources/folder-without-metadata')
-            }).toThrow(WRONG_FOLDER_ERROR)
+            }).toThrow(WordRepositoryFolderError)
         })
     })
 })
