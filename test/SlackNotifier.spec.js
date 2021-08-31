@@ -8,24 +8,16 @@ class MockedWordSelector extends WordSelector {
         super(undefined);
     }
 
-    select() {
+    async select() {
         return new Word('german', 'english')
     }
 }
 
-const notifier = new SlackNotifier(new MockedWordSelector())
-
-describe('when the webhook is undefined', () => {
-    it('should throw an error', () => {
-        expect(() => {
-            notifier.sendWordOfTheDay({webhook: undefined})
-        }).toThrow('the webhook is missing')
-    })
-})
-
 describe('when the webhook is set', () => {
     it('should request the webhook', async () => {
         // given
+        const notifier = new SlackNotifier(new MockedWordSelector())
+
         const scope = nock('https://mocked-slack-host/')
             .post('/webhook')
             .reply(200, 'ok')

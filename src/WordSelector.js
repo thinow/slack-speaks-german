@@ -8,10 +8,10 @@ class WordSelector {
         this.wordRepository = WordRepository
     }
 
-    select() {
+    async select() {
         const numberOfWords = this.wordRepository.getNumberOfWords();
         const wordIndex = generateRandomIntegerLessThan(numberOfWords)
-        return this.wordRepository.getWord(wordIndex)
+        return await this.wordRepository.getWord(wordIndex)
     }
 }
 

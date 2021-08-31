@@ -5,8 +5,8 @@ class SlackNotifier {
         this.wordSelector = wordSelector;
     }
 
-    sendWordOfTheDay(opts) {
-        const word = this.wordSelector.select()
+    async sendWordOfTheDay(opts) {
+        const word = await this.wordSelector.select()
         return this.sendToSlack(opts.webhook, word)
     }
 

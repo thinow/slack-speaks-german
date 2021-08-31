@@ -47,7 +47,6 @@ class WordRepository {
         return this.metadata.numberOfLines
     }
 
-    // TODO make all executors of the function async
     async getWord(index) {
         const line = await this.readLine(index)
         return this.transformLineToWord(line)

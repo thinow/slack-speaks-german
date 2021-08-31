@@ -10,9 +10,9 @@ const mockedWordRepository = {
 }
 
 describe('when selecting a word', () => {
-    it('should pick a value from given words', () => {
+    it('should pick a value from given words', async () => {
         // when
-        const word = new WordSelector(mockedWordRepository).select()
+        const word = await new WordSelector(mockedWordRepository).select()
 
         // then
         expect(word).toEqual(SINGLE_TEST_WORD)
