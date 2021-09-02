@@ -13,14 +13,12 @@ class SlackNotifier {
     sendToSlack(webhook, word) {
         if (!webhook) throw new Error('the webhook is missing')
 
-        // TODO color depending on the article
-        const color = '#3583f3'
         return request
             .post(webhook)
             .send({
                 attachments: [
                     {
-                        color,
+                        color: buildColor(word),
                         blocks: [
                             context('Wort des Tages'),
                             section([
@@ -39,6 +37,20 @@ class SlackNotifier {
     }
 }
 
+function buildColor(word) {
+    const beginning = word.german.substring(0, 4)
+
+    switch (beginning) {
+        case 'der ':
+            return '#3583f3'
+        case 'die ':
+            return '#f62a52'
+        case 'das ':
+            return '#44a822'
+        default:
+            return '#ecaf14'
+    }
+}
 
 function buildURL(word) {
     const mapping = [
