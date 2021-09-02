@@ -17,11 +17,7 @@ describe('when triggering the handler', () => {
 
         // then
         expect(requestBodyCaptor.getValue()).toMatchObject({
-            attachments: expect.arrayContaining([
-                expect.objectContaining({
-                    title: expect.any(String)
-                })
-            ])
+            attachments: expect.any(Array)
         })
     })
 })
