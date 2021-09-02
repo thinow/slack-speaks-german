@@ -16,7 +16,7 @@ AWS Lambda which notifies Slack with a German word, its English translation, and
 # Run the tests
 make test
 
-# Send a word to a Slack from local (test purpose)
+# Send a word to a Slack from local (test purposes)
 WEBHOOK=https://hooks.slack.com/services/AAAAA/BBBBBB/CCCCCCCCCC make run
 ```
 
@@ -29,9 +29,9 @@ The code will be published in a S3 bucket, also - before trying to deploy - make
 The following command assumes that `aws cli` is authenticated and has all the required permissions to create the required resources.
 
 ```bash
-    BUCKET_NAME="BUCKET-NAME" \
-    BUCKET_KEY="PREFIX-PACKAGE-NAME" \
-    WEBHOOK="SLACK-WEBHOOK-URL" \
+    BUCKET_NAME="NameOfTheBucket" \
+    BUCKET_KEY="NameOfTheFileInTheBucket" \
+    WEBHOOK="SlackWebHookURL" \
     make deploy
 ```
 
