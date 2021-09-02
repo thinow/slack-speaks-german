@@ -36,7 +36,7 @@ The following command assumes that `aws cli` is authenticated and has all the re
 
 Other parameters are available :
 * `SCHEDULE_STATE` (default = `DISABLED`) : enables or disables the schedule
-* `SCHEDULE_EXPRESSION` (default = `cron(0 7 ? * MON-FRI *)`) : expression of the schedule
+* `SCHEDULE_EXPRESSION` (default = `cron(0 6 ? * MON-FRI *)`) : expression of the schedule
 * `ROLE_PERMISSIONS_BOUNDARY` (default = none) : if needed, specifies a permission boundary to the role
 * `RESOURCES_PATH` (default = `/`) : defines a path to the role and the policy
 * `TAG_TEAM` (default = `undefined`) : value of the tag `Team` applied to the resources
