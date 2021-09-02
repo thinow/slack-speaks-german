@@ -27,6 +27,7 @@ class SlackNotifier {
                         blocks: [
                             context('Wort des Tages'),
                             section([
+                                // TODO adds details only if it exists
                                 `${link(bold(word.german), linkToTheWord)}   ${italic(word.details)}`,
                                 word.english,
                             ]),
