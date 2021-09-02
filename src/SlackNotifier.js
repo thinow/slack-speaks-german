@@ -27,8 +27,7 @@ class SlackNotifier {
                         blocks: [
                             context('Wort des Tages'),
                             section([
-                                // TODO adds details only if it exists
-                                `${link(bold(word.german), linkToTheWord)}   ${italic(word.details)}`,
+                                `${link(bold(word.german), linkToTheWord)}   ${italic(word.details)}`.trim(),
                                 word.english,
                             ]),
                             divider(),
@@ -67,8 +66,8 @@ function divider() {
     return {type: 'divider'}
 }
 
-const bold = (text) => `*${text}*`
-const italic = (text) => `_${text}_`
-const link = (text, url) => `<${url}|${text}>`
+const bold = (text) => text ? `*${text}*` : ''
+const italic = (text) => text ? `_${text}_` : ''
+const link = (text, url) => text ? `<${url}|${text}>` : ''
 
 module.exports = SlackNotifier
