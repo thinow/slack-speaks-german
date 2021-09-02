@@ -2,7 +2,8 @@
 
 AWS Lambda which notifies Slack with a German word, its English translation, and some examples.
 
-![Image](./assets/readme-example-noun-masculin.png)
+![Image](./assets/readme-example-noun-neutral.png)
+![Image](./assets/readme-example-verb.png)
 
 ## Prerequisites
 
