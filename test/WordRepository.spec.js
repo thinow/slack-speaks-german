@@ -54,14 +54,13 @@ describe('with a single word', () => {
 })
 
 describe('with multiple words', () => {
-    it('should return the word based on the index', async () => {
+    it('should correctly parse all the words based on the index', async () => {
         // when
         const repository = WordRepository.loadFromFolder('./test/resources/folder-multiple-words');
 
         // then
-        expect(await repository.getWord(1)).toEqual(expect.objectContaining(({
-            german: 'erzählen',
-            english: 'to tell',
-        })))
+        for (let index = 0; index < repository.getNumberOfWords(); index++) {
+            expect(await repository.getWord(index)).toMatchSnapshot()
+        }
     })
 })

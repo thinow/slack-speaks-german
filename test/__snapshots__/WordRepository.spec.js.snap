@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`with multiple words should correctly parse all the words based on the index 1`] = `
+Word {
+  "details": "no plural forms",
+  "english": "replacement",
+  "examples": Array [
+    Object {
+      "english": "You get from our company a replacement for the broken device.",
+      "german": "Sie bekommen von unserer Firma einen Ersatz für das kaputte Gerät.",
+    },
+  ],
+  "german": "der Ersatz",
+  "germanWordOnly": "Ersatz",
+}
+`;
+
+exports[`with multiple words should correctly parse all the words based on the index 2`] = `
+Word {
+  "details": "erzählt, erzählte, hat erzählt",
+  "english": "to tell",
+  "examples": Array [
+    Object {
+      "english": "My husband has already told me a lot about you.",
+      "german": "Mein Mann hat mir schon viel von Ihnen erzählt.",
+    },
+    Object {
+      "english": "I always have to tell my children a story in the evening.",
+      "german": "Ich muss meinen Kindern abends immer eine Geschichte erzählen.",
+    },
+  ],
+  "german": "erzählen",
+  "germanWordOnly": "erzählen",
+}
+`;
+
+exports[`with multiple words should correctly parse all the words based on the index 3`] = `
+Word {
+  "details": "",
+  "english": "due",
+  "examples": Array [
+    Object {
+      "english": "The bill is due at the end of the month.",
+      "german": "Die Rechnung ist Ende des Monats fällig.",
+    },
+  ],
+  "german": "fällig",
+  "germanWordOnly": "fällig",
+}
+`;
