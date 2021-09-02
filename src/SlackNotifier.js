@@ -15,9 +15,6 @@ class SlackNotifier {
 
         // TODO color depending on the article
         const color = '#3583f3'
-        // TODO replace characters in word.germanWordOnly, e.g. ä to ae
-        const linkToTheWord = `https://www.duden.de/rechtschreibung/${encodeURIComponent(word.germanWordOnly)}`
-
         return request
             .post(webhook)
             .send({
@@ -27,7 +24,7 @@ class SlackNotifier {
                         blocks: [
                             context('Wort des Tages'),
                             section([
-                                `${link(bold(word.german), linkToTheWord)}   ${italic(word.details)}`.trim(),
+                                `${link(bold(word.german), buildURL(word))}   ${italic(word.details)}`.trim(),
                                 word.english,
                             ]),
                             divider(),
@@ -40,6 +37,26 @@ class SlackNotifier {
                 ]
             })
     }
+}
+
+
+function buildURL(word) {
+    const mapping = [
+        ['Ä', 'Ae'],
+        ['Ö', 'Oe'],
+        ['Ü', 'Ue'],
+        ['ä', 'ae'],
+        ['ö', 'oe'],
+        ['ü', 'ue'],
+        ['ß', 'sz'],
+    ]
+
+    let key = word.germanWordOnly
+    for (const [from, to] of mapping) {
+        key = key.replace(from, to)
+    }
+
+    return `https://www.duden.de/rechtschreibung/${encodeURIComponent(key)}`
 }
 
 function context(value) {
