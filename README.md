@@ -16,8 +16,8 @@ AWS Lambda which notifies Slack with a German word, its English translation, and
 # Run the tests
 make test
 
-# Build
-make build
+# Send a word to a Slack from local (test purpose)
+WEBHOOK=https://hooks.slack.com/services/AAAAA/BBBBBB/CCCCCCCCCC make run
 ```
 
 ## Deploy to AWS Lambda

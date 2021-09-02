@@ -1,5 +1,5 @@
 const nock = require('nock')
-const {handlers} = require('../index');
+const {handlers} = require('../index')
 const RequestBodyCaptor = require('./common/RequestBodyCaptor')
 
 describe('when triggering the handler', () => {
