@@ -25,7 +25,7 @@ aws cloudformation deploy \
         S3BucketKey="${BUCKET_KEY}/${PACKAGE_FILENAME}" \
         WebHook="${WEBHOOK}" \
         ScheduleState="${SCHEDULE_STATE:-DISABLED}" \
-        ScheduleExpression="${SCHEDULE_EXPRESSION:-cron(0 7 ? * MON-FRI *)}" \
+        ScheduleExpression="${SCHEDULE_EXPRESSION:-cron(0 6 ? * MON-FRI *)}" \
         LambdaFunctionName="${LAMBDA_FUNCTION_NAME:-SlackSpeaksGerman}" \
         RolePermissionsBoundary="${ROLE_PERMISSIONS_BOUNDARY:-}" \
         ResourcesPath="${RESOURCES_PATH:-/}" \

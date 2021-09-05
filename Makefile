@@ -4,6 +4,9 @@ init:
 test: init
 	npm test
 
+run: init
+	node run.js
+
 build: test
 	./scripts/build.sh
 

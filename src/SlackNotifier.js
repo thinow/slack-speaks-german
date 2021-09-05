@@ -1,12 +1,12 @@
 const request = require('superagent');
 
 class SlackNotifier {
-    constructor(wordGenerator) {
-        this.wordGenerator = wordGenerator;
+    constructor(wordSelector) {
+        this.wordSelector = wordSelector;
     }
 
-    sendWordOfTheDay(opts) {
-        const word = this.wordGenerator.generate()
+    async sendWordOfTheDay(opts) {
+        const word = await this.wordSelector.select()
         return this.sendToSlack(opts.webhook, word)
     }
 
@@ -16,23 +16,87 @@ class SlackNotifier {
         return request
             .post(webhook)
             .send({
-                text: 'Guten Morgen! Lass uns ein neues Wort lernen...',
                 attachments: [
                     {
-                        color: '#ff9900',
-                        title: `${word.article} ${word.german}`,
-                        footer: `${word.english}`
+                        color: buildColor(word),
+                        blocks: [
+                            context('Wort des Tages'),
+                            section([
+                                `${link(bold(word.german), buildURL(word))}   ${italic(word.details)}`.trim(),
+                                word.english,
+                            ]),
+                            divider(),
+                            ...word.examples.map(example => section([
+                                bold(example.german),
+                                example.english,
+                            ])),
+                        ],
                     },
-                    {
-                        color: '#ff9900',
-                        text: [
-                            `:de: Bedeutung : https://www.wortbedeutung.info/${encodeURIComponent(word.german)}`,
-                            `:gb: Übersetzung : https://www.wordreference.com/deen/${encodeURIComponent(word.german)}`
-                        ].join('\n')
-                    }
                 ]
             })
     }
 }
+
+function buildColor(word) {
+    const beginning = word.german.substring(0, 4)
+
+    switch (beginning) {
+        case 'der ':
+            return '#3583f3'
+        case 'die ':
+            return '#f62a52'
+        case 'das ':
+            return '#44a822'
+        default:
+            return '#ecaf14'
+    }
+}
+
+function buildURL(word) {
+    const mapping = [
+        ['Ä', 'Ae'],
+        ['Ö', 'Oe'],
+        ['Ü', 'Ue'],
+        ['ä', 'ae'],
+        ['ö', 'oe'],
+        ['ü', 'ue'],
+        ['ß', 'sz'],
+    ]
+
+    let key = word.germanWordOnly
+    for (const [from, to] of mapping) {
+        key = key.replace(from, to)
+    }
+
+    return `https://www.duden.de/rechtschreibung/${encodeURIComponent(key)}`
+}
+
+function context(value) {
+    return {
+        type: 'context',
+        elements: [
+            {type: 'mrkdwn', text: value},
+        ],
+    }
+}
+
+function section(value) {
+    const text = Array.isArray(value) ? value.join('\n') : value;
+    return {
+        type: 'section',
+        text: {
+            type: 'mrkdwn',
+            text,
+        },
+    }
+}
+
+function divider() {
+    return {type: 'divider'}
+}
+
+const bold = (text) => text ? `*${text}*` : ''
+const italic = (text) => text ? `_${text}_` : ''
+const link = (text, url) => text ? `<${url}|${text}>` : ''
 
 module.exports = SlackNotifier

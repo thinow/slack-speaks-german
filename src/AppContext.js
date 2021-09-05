@@ -1,12 +1,13 @@
-const words = require('../resources/words')
-const WordGenerator = require('./WordGenerator')
+const WordRepository = require('./WordRepository')
+const WordSelector = require('./WordSelector')
 const SlackNotifier = require('./SlackNotifier')
 
 class AppContext {
-    constructor() {
-        this.words = words
-        this.wordGenerator = new WordGenerator(this.words)
-        this.slackNotifier = new SlackNotifier(this.wordGenerator)
+    constructor(event) {
+        const folder = event.wordsFolder || './resources/words'
+        this.wordRepository = WordRepository.loadFromFolder(folder)
+        this.wordSelector = new WordSelector(this.wordRepository)
+        this.slackNotifier = new SlackNotifier(this.wordSelector)
     }
 }
 

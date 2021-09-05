@@ -1,5 +1,5 @@
 const nock = require('nock')
-const {handlers} = require('../index');
+const {handlers} = require('../index')
 const RequestBodyCaptor = require('./common/RequestBodyCaptor')
 
 describe('when triggering the handler', () => {
@@ -12,17 +12,11 @@ describe('when triggering the handler', () => {
 
         // when
         await handlers({
-            webhook: 'https://mocked-slack-host/webhook'
+            webhook: 'https://mocked-slack-host/webhook',
+            wordsFolder: './test/resources/folder-single-word'
         })
 
         // then
-        expect(requestBodyCaptor.getValue()).toMatchObject({
-            text: expect.stringMatching(/Guten Morgen!.*$/),
-            attachments: expect.arrayContaining([
-                expect.objectContaining({
-                    title: expect.any(String)
-                })
-            ])
-        })
+        expect(requestBodyCaptor.getValue()).toMatchSnapshot()
     })
 })
