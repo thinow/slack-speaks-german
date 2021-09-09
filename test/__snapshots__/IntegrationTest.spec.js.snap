@@ -6,15 +6,6 @@ Object {
     Object {
       "blocks": Array [
         Object {
-          "elements": Array [
-            Object {
-              "text": "Wort des Tages",
-              "type": "mrkdwn",
-            },
-          ],
-          "type": "context",
-        },
-        Object {
           "text": Object {
             "text": "<https://www.duden.de/rechtschreibung/einzig|*einzig*>
 only, unique",

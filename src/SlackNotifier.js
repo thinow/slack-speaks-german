@@ -20,7 +20,6 @@ class SlackNotifier {
                     {
                         color: buildColor(word),
                         blocks: [
-                            context('Wort des Tages'),
                             section([
                                 `${link(bold(word.german), buildURL(word))}   ${italic(word.details)}`.trim(),
                                 word.english,
@@ -69,15 +68,6 @@ function buildURL(word) {
     }
 
     return `https://www.duden.de/rechtschreibung/${encodeURIComponent(key)}`
-}
-
-function context(value) {
-    return {
-        type: 'context',
-        elements: [
-            {type: 'mrkdwn', text: value},
-        ],
-    }
 }
 
 function section(value) {
