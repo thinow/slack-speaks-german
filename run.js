@@ -5,8 +5,8 @@ async function main() {
     webhook = getEnvironmentVariable('WEBHOOK')
 
     try {
-        await handlers({ webhook })
-        console.log('🚀 Message sent succesfully.')
+        await handlers({webhook})
+        console.log('🚀 The message has been sent successfully.')
     } catch(error) {
         console.error(error)
     }
