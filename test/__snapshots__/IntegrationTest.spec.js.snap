@@ -1,31 +1,31 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`when triggering the handler should have sent a message to the webhook 1`] = `
-Object {
-  "attachments": Array [
-    Object {
-      "blocks": Array [
-        Object {
-          "text": Object {
+{
+  "attachments": [
+    {
+      "blocks": [
+        {
+          "text": {
             "text": "<https://www.duden.de/rechtschreibung/einzig|*einzig*>
 only, unique",
             "type": "mrkdwn",
           },
           "type": "section",
         },
-        Object {
+        {
           "type": "divider",
         },
-        Object {
-          "text": Object {
+        {
+          "text": {
             "text": "*Wir waren die einzigen Gäste.*
 We were the only guests.",
             "type": "mrkdwn",
           },
           "type": "section",
         },
-        Object {
-          "text": Object {
+        {
+          "text": {
             "text": "*Das war das einzige Mal, dass ich ihn gesehen habe.*
 That was the only time I saw him.",
             "type": "mrkdwn",
