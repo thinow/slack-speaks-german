@@ -7,7 +7,7 @@ AWS Lambda which notifies Slack with a German word, its English translation, and
 
 ## Prerequisites
 
-1. [Node.js](https://nodejs.org/en/) (version 14+)
+1. [Node.js](https://nodejs.org/en/) (version 18+)
 1. [AWS cli](https://aws.amazon.com/cli/) (version 1.18+) in order to deploy
 
 ## Usage
