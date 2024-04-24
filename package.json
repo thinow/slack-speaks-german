@@ -21,7 +21,7 @@
   "homepage": "https://github.com/thinow/slack-speaks-german#readme",
   "dependencies": {
     "line-reader": "^0.4.0",
-    "superagent": "^8.0.6"
+    "superagent": "^9.0.1"
   },
   "devDependencies": {
     "jest": "^29.3.1",
